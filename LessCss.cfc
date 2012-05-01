@@ -151,6 +151,12 @@
 		<cfscript>
 			var loc = {};
 			
+			if (!StructKeyExists(server, "javaloader") || !IsStruct(server.javaloader))
+				server.javaloader = {};
+			
+			if (StructKeyExists(server.javaloader, "lesscss"))
+				return server.javaloader.lesscss;
+			
 			loc.relativePluginPath = application.wheels.webPath & application.wheels.pluginPath & "/lesscss/";
 			loc.classPath = Replace(Replace(loc.relativePluginPath, "/", ".", "all") & "javaloader", ".", "", "one");
 			
@@ -158,9 +164,9 @@
 			loc.paths[1] = ExpandPath(loc.relativePluginPath & "lib/lesscss-engine-1.2.1.jar");
 			
 			// set the javaLoader to the request in case we use it again
-			loc.javaLoader = $createObjectFromRoot(path=loc.classPath, fileName="JavaLoader", method="init", loadPaths=loc.paths, loadColdFusionClassPath=false);
+			server.javaLoader.lesscss = $createObjectFromRoot(path=loc.classPath, fileName="JavaLoader", method="init", loadPaths=loc.paths, loadColdFusionClassPath=false);
 		</cfscript>
-		<cfreturn loc.javaLoader />
+		<cfreturn server.javaLoader.lesscss />
 	</cffunction>
 	
 	<cffunction name="$writeLessScriptVariables" access="public" output="false" returntype="void" mixin="controller">
