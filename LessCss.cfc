@@ -4,7 +4,7 @@
 		<cfscript>
 			StructDelete(application, "lesscss", false);
 			
-			application.lessCssJsFileName = "less-1.1.5.js";
+			application.lessCssJsFileName = "less-1.3.0.js";
 			
 			this.version = "1.1.7";	
 			
@@ -161,7 +161,7 @@
 			loc.classPath = Replace(Replace(loc.relativePluginPath, "/", ".", "all") & "javaloader", ".", "", "one");
 			
 			loc.paths = ArrayNew(1);
-			loc.paths[1] = ExpandPath(loc.relativePluginPath & "lib/lesscss-engine-1.2.1.jar");
+			loc.paths[1] = ExpandPath(loc.relativePluginPath & "lib/lesscss-engine-1.3.1.jar");
 			
 			// set the javaLoader to the request in case we use it again
 			server.javaLoader.lesscss = $createObjectFromRoot(path=loc.classPath, fileName="JavaLoader", method="init", loadPaths=loc.paths, loadColdFusionClassPath=false);
