@@ -1,6 +1,6 @@
 # Less CSS v0.1
 
-The Less CSS plugin gives you the ability to easily incorporate [Less CSS][] into your wheels application. In design and development modes, the plugin includes the less css javascript to compile the less css client side for easy development. When it testing and production modes, the plugin uses the [asual less css java engine][] to compile your less css on application reload to keep your site or application snappy and light on http requests.
+The Less CSS plugin gives you the ability to easily incorporate [Less CSS][] into your wheels application. In design and development environments, the plugin includes the less css javascript to compile the less css client side for easy development. When in testing and production environments, the plugin uses the [asual less css java engine][] to compile your less css on application reload to keep your site or application snappy and light on http requests.
 
 ## Dependencies
 
@@ -69,8 +69,8 @@ Call `lessLinkTag()` in your application's layouts to render everything necessar
 			<td>rootPath</td>
 			<td>string</td>
 			<td>No</td>
-			<td></td>
-			<td>The path where your less files reside. Defaults to the `/stylesheets` path.</td>
+			<td>stylesheets</td>
+			<td>The path where your less files reside.</td>
 		</tr>
 	</tbody>
 </table>
@@ -93,7 +93,7 @@ Call `lessLinkTag()` in your application's layouts to render everything necessar
 			<td>string</td>
 			<td>Yes</td>
 			<td></td>
-			<td>The sources to make `<link />` tags for.</td>
+			<td>The sources to make `&lt;link /&gt;` tags for.</td>
 		</tr>
 		<tr>
 			<td>type</td>
