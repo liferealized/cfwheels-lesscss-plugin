@@ -6,7 +6,7 @@
 			
 			application.lessCssJsFileName = "less-1.3.0.js";
 			
-			this.version = "1.1.7";	
+			this.version = "1.1.7,1.1.8";	
 			
 			// add in the less.js file for when we are in design / develop / maintenance environments
 			if (!FileExists(ExpandPath("javascripts/#application.lessCssJsFileName#")))
