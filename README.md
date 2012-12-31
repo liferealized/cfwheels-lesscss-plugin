@@ -56,7 +56,7 @@ Call `lessLinkTag()` in your application's layouts to render everything necessar
 			<td>boolean</td>
 			<td>No</td>
 			<td>false</td>
-			<td>Whether to compress the combined less CSS files with the [Asset Bundler][]. Requires you have the [Asset Bundler][] plugin installed.</td>
+			<td>Whether to compress the combined less CSS files with the asset bundler. Requires you have the asset bundler plugin installed.</td>
 		</tr>
 		<tr>
 			<td>extension</td>
@@ -121,7 +121,7 @@ Call `lessLinkTag()` in your application's layouts to render everything necessar
 			<td>string</td>
 			<td>No</td>
 			<td></td>
-			<td>When [Asset Bundler][] is installed, you can specify a bundle to output. Requires you have the [Asset Bundler][] plugin installed.</td>
+			<td>When asset bundler is installed, you can specify a bundle to output. Requires you have the asset bundler plugin installed.</td>
 		</tr>
 	</tbody>
 </table>
