@@ -4,13 +4,7 @@
 		<cfscript>
 			StructDelete(application, "lesscss", false);
 
-			application.lessCssJsFileName = "less-1.3.0.js";
-
 			this.version = "1.1.7,1.1.8,1.4.5";
-
-			// add in the less.js file for when we are in design / develop / maintenance environments
-			if (!FileExists(ExpandPath("javascripts/#application.lessCssJsFileName#")))
-				FileCopy(ExpandPath("plugins/lesscss/javascripts/#application.lessCssJsFileName#"), ExpandPath("javascripts/#application.lessCssJsFileName#"));
 		</cfscript>
 		<cfreturn this />
 	</cffunction>
@@ -63,7 +57,7 @@
 			{
 				// leaving out the development mode on 1.1.5 for now
 				$writeLessScriptVariables();
-				javaScriptIncludeTag(source=application.lessCssJsFileName, head=true);
+				javaScriptIncludeTag(source="//cdnjs.cloudflare.com/ajax/libs/less.js/2.7.1/less.min.js", head=true);
 				request.wheels.lessJsIncluded = true;
 			}
 
@@ -161,7 +155,7 @@
 			loc.classPath = Replace(Replace(loc.relativePluginPath, "/", ".", "all") & "javaloader", ".", "", "one");
 
 			loc.paths = ArrayNew(1);
-			loc.paths[1] = ExpandPath(loc.relativePluginPath & "lib/lesscss-engine-1.3.1.jar");
+			loc.paths[1] = ExpandPath(loc.relativePluginPath & "lib/lesscss-engine-1.5.1.jar");
 
 			// set the javaLoader to the request in case we use it again
 			server.javaLoader.lesscss = $createObjectFromRoot(path=loc.classPath, fileName="JavaLoader", method="init", loadPaths=loc.paths, loadColdFusionClassPath=false);
