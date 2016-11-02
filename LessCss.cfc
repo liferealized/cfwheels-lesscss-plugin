@@ -115,7 +115,7 @@
 				return;
 
 			loc.javaLoader = $createLessJavaLoader();
-			loc.lessEngine = loc.javaLoader.create("com.asual.lesscss.LessEngine").init();
+			loc.lessEngine = loc.javaLoader.create("com.inet.lib.less.Less").init();
 
 			for (loc.item in ListToArray(arguments.sources))
 			{
@@ -131,9 +131,11 @@
 					loc.source &= arguments.extension;
 
 				loc.sourceFile = CreateObject("java", "java.io.File").init(ExpandPath(arguments.rootPath & loc.source));
-				loc.destinationFile = CreateObject("java", "java.io.File").init(ExpandPath(arguments.rootPath & loc.destination));
+				loc.destinationFile = ExpandPath(arguments.rootPath & loc.destination);
 
-				loc.lessEngine.compile(loc.sourceFile, loc.destinationFile);
+				loc.output = loc.lessEngine.compile(loc.sourceFile, javacast("boolean", false));
+
+				fileWrite(loc.destinationFile, loc.output);
 
 				// save where the compiled file is the in application scope
 				application.lesscss[loc.source] = loc.destination;
@@ -155,9 +157,9 @@
 			loc.classPath = Replace(Replace(loc.relativePluginPath, "/", ".", "all") & "javaloader", ".", "", "one");
 
 			loc.paths = ArrayNew(1);
-			loc.paths[1] = ExpandPath(loc.relativePluginPath & "lib/lesscss-engine-1.5.1.jar");
+			loc.paths[1] = ExpandPath(loc.relativePluginPath & "lib/jlessc-1.4.jar");
 
-			// set the javaLoader to the request in case we use it again
+			// set the javaLoader to the request in case we use it againx
 			server.javaLoader.lesscss = $createObjectFromRoot(path=loc.classPath, fileName="JavaLoader", method="init", loadPaths=loc.paths, loadColdFusionClassPath=false);
 		</cfscript>
 		<cfreturn server.javaLoader.lesscss />
