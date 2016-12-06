@@ -4,7 +4,7 @@
     <cfscript>
       StructDelete(application, "lesscss", false);
 
-      this.version = "1.1.7,1.1.8,1.4.5";
+      this.version = "1.1.7,1.1.8,1.4.5,2.0";
     </cfscript>
     <cfreturn this />
   </cffunction>
