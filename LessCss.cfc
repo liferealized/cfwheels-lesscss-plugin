@@ -18,16 +18,20 @@
     <cfscript>
       if (Len(arguments.bundle))
       {
-        if (application.wheels.showErrorInformation && !StructKeyExists(variables, "$callOriginalIncludeMethod"))
+        if (application.wheels.showErrorInformation && !StructKeyExists(variables, "$includeMethodArguments"))
           $throw(type="Wheels", message="Plugin Missing", extendedInfo="You must include the asset bundler plugin to use the bundle argument.");
 
         // need to do this to make the method seem like a plugin method for asset bundler
         core.$lessLinkTag = variables.$lessLinkTag;
 
-        if (ListFindNoCase("testing,production", application.wheels.environment))
-          return $callOriginalIncludeMethod($includeMethod="styleSheetLinkTag", $fileType="css", argumentCollection=arguments);
-        else
-          return $callOriginalIncludeMethod($includeMethod="$lessLinkTag", $fileType="less", argumentCollection=arguments);
+        if (ListFindNoCase("testing,production", application.wheels.environment)) {
+          arguments = $includeMethodArguments($fileType="css", argumentCollection=arguments);
+          return core.styleSheetLinkTag(argumentCollection = arguments);
+        }
+        else {
+          arguments = $includeMethodArguments($fileType="less", argumentCollection=arguments);
+          return $lessLinkTag(argumentCollection=arguments);
+        }
       }
 
       if (ListFindNoCase("testing,production", application.wheels.environment) && StructKeyExists(application, "lesscss"))
